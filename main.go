@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -40,17 +41,20 @@ func main() {
 
 	code := Transpile(string(data))
 
-	output, err := os.Create(fileDir + fileName + ".py")
+	tmpFile, err := os.CreateTemp(fileDir, fmt.Sprintf("boitata-%s-*.py", fileName))
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("Error creating temporary Python file:", err)
+	}
+	defer os.Remove(tmpFile.Name())
+
+	_, err = tmpFile.WriteString(code)
+	if err != nil {
+		log.Fatal("Error writing to temporary Python file:", err)
 	}
 
-	_, err = output.WriteString(code)
-	if err != nil {
-		log.Fatal(err)
-	}
+	tmpFile.Close()
 
-	cmd := exec.Command("python", fileDir+fileName+".py")
+	cmd := exec.Command("python", tmpFile.Name())
 
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
