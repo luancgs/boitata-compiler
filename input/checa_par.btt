@@ -1,0 +1,8 @@
+func checar_par(numero):
+  se numero % 2 == 0:
+    imprima(f"O número {numero} é par")
+  senão:
+    imprima(f"O número {numero} é ímpar")
+
+num = leia("Digite um número: ")
+checar_par(inteiro(num))

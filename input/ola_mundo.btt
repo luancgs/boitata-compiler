@@ -1,0 +1,4 @@
+func ola_mundo():
+  imprima("Olá, Mundo!")
+
+ola_mundo()
