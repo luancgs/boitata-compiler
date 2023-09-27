@@ -2,7 +2,7 @@
 
 ## Build
 
-Para usar o compilador, rode o comando `go build`. Isso irá gerar um arquivo binário no repositório chamao `boitata-compiler`.
+Para usar o compilador, rode o comando `go build`. Isso irá gerar um arquivo binário no repositório chamado `boitata-compiler`.
 
 ## Usando exemplos
 
