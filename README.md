@@ -15,6 +15,22 @@ $ ./boitata-compiler ./input/ola_mundo.btt
 
 Este comando também funciona com scripts _btt_ além dos listados neste repositório.
 
+## Usando Docker
+
+Para fazer uso do docker ao executar scripts _btt_, você precisa primeiro montar a imagem presente neste repositório:
+
+```sh
+# Montando a imagem do compilador
+$ docker build --tag boitata .
+```
+
+Na sequencia, basta iniciar um container com esta imagem, passando o script _.btt_ nos volumes da seguinte forma:
+
+```sh
+# Executando meu_script.btt dentro do container
+$ docker run -i --rm -v ./meu_script.btt:/input.btt boitata
+```
+
 ## To Do
 
 - [ ] Melhorar checagem de tokens
