@@ -8,6 +8,8 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+
+	"github.com/luancgs/boitata-compiler/transpiler"
 )
 
 func main() {
@@ -17,6 +19,7 @@ func main() {
 	}
 
 	if _, err := os.Stat(os.Args[1]); os.IsNotExist(err) {
+		fmt.Println(os.Args[1])
 		log.Fatal("O arquivo informado não existe")
 	}
 
@@ -39,7 +42,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	code := Transpile(string(data))
+	code := transpiler.Transpile(string(data))
 
 	tmpFile, err := os.CreateTemp(fileDir, fmt.Sprintf("boitata-%s-*.py", fileName))
 	if err != nil {
